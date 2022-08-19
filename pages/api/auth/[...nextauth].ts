@@ -7,9 +7,10 @@ export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
       profile(profile) {
+        console.log(profile);
         return {
           id: profile.id.toString(),
           name: profile.name || profile.login,
@@ -24,6 +25,7 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session, user }) {
+      console.log(user);
       // Send properties to the client, like an access_token from a provider.
       session.username = user.username;
       return session;
