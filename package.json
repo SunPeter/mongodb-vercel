@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@8.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "NEXT_PHASE=phase-production-build next build",
