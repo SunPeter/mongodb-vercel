@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn setup && next build",
+    "build": "NEXT_PHASE=phase-production-build next build",
     "start": "next start",
     "lint": "next lint",
     "setup": "NODE_OPTIONS='--experimental-json-modules' node ./scripts/setup.mjs",
@@ -28,10 +28,10 @@
     "react-textarea-autosize": "^8.3.4",
     "remark": "^14.0.2",
     "remark-mdx": "^2.1.1",
-    "swr": "^2.0.0-beta.1"
+    "swr": "^2.0.0-beta.1",
+    "@faker-js/faker": "^7.1.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.1.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
