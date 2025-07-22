@@ -12,7 +12,6 @@ declare global {
 
 // Check if we're in a build/test environment or if MONGODB_URI is not available
 const isBuildOrTest = process.env.NODE_ENV === 'test' || 
-                      process.env.NEXT_PHASE === 'phase-production-build' || 
                       !process.env.MONGODB_URI;
 
 if (isBuildOrTest) {

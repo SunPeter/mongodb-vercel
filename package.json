@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "NEXT_PHASE=phase-production-build next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "setup": "NODE_OPTIONS='--experimental-json-modules' node ./scripts/setup.mjs",
