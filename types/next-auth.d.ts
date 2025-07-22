@@ -1,4 +1,6 @@
-import NextAuth from "next-auth"
+import { Session } from "next-auth"
+import { JWT } from "next-auth/jwt"
+import { AdapterUser } from "next-auth/adapters"
 
 declare module "next-auth" {
   /**
@@ -7,8 +9,14 @@ declare module "next-auth" {
   interface Session {
     username?: string
   }
+  
+  interface User extends AdapterUser {
+    username?: string
+  }
+}
 
-  interface User {
+declare module "next-auth/jwt" {
+  interface JWT {
     username?: string
   }
 }
