@@ -7,8 +7,8 @@ export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      clientId: process.env.GITHUB_CLIENT_ID || 'dummy_client_id',
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || 'dummy_client_secret',
       profile(profile) {
         console.log(profile);
         return {

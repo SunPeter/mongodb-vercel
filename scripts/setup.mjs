@@ -5,6 +5,21 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const setup = async () => {
+  // Skip database setup during build process
+  const isBuildOrTest = process.env.NODE_ENV === 'test' || 
+                        process.env.NEXT_PHASE === 'phase-production-build';
+  
+  if (isBuildOrTest) {
+    console.log('Skipping database setup during build/test process');
+    return;
+  }
+  
+  // Check if MongoDB URI is available
+  if (!process.env.MONGODB_URI) {
+    console.warn('MONGODB_URI is not defined. Skipping database setup.');
+    return;
+  }
+
   let client;
 
   try {
@@ -47,6 +62,7 @@ const setup = async () => {
       console.log('Successfully inserted records');
     }
   } catch (error) {
+    console.warn('Database error:', error.message);
     return 'Database is not ready yet';
   } finally {
     if (client) {
@@ -57,7 +73,8 @@ const setup = async () => {
 
 try {
   setup();
-} catch {
+} catch (error) {
+  console.warn('Error during setup:', error.message);
   console.warn('Database is not ready yet. Skipping seeding...');
 }
 
